@@ -22,16 +22,16 @@ public class MenuManager {
 			num = input.nextInt();
 		
 			if (num == 1) {
-				bankmanager.addBank();
+				bankmanager.addbank();;
 			}
 			else if (num == 2) {
-				bankmanager.deleteBank();
+				bankmanager.deletBank();;
 			}
 			else if (num == 3) {
-				bankmanager.editBank();
+				bankmanager.editBank();;
 			}
 			else if (num == 4) {
-				bankmanager.viewBank();
+				bankmanager.viewBank();;
 			}
 			else {
 				continue;
