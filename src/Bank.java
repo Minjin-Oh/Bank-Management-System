@@ -10,11 +10,6 @@ public class Bank {
 
 	}
 	
-	public Bank(String name, String birth) {
-		this.name = name;
-		this.birth = birth;
-	}
-	
 	public Bank(String name, String birth, String account, String num) {
 		this.name = name;
 		this.birth = birth;
