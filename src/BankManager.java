@@ -2,6 +2,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Bank.Bank;
+import Bank.KBbankAccount;
+import Bank.NHbankAccount;
+import Bank.ShinHanbankAccount;
+
 public class BankManager {
 	ArrayList<Bank> banks = new ArrayList<Bank>();
 	Scanner input;
@@ -11,17 +16,44 @@ public class BankManager {
 	
 	public void addBank() {
 		
-		Bank bank = new Bank();
+		int kind = 0;
+		Bank bank;
+		while (kind != 1 && kind != 2 && kind != 3 && kind != 4) {
+			System.out.println(" 1. Kakao Bank");
+			System.out.println(" 2. NH Bank");
+			System.out.println(" 3. KB Bank");
+			System.out.println(" 4. ShinHan Bank");
+			System.out.print("Select num for Bank Kind between 1-4 : ");
+			kind = input.nextInt();
 		
-		System.out.print("Name : ");
-		bank.name = input.next();
-		System.out.print("Birth : ");
-		bank.birth = input.next();
-		System.out.print("Account : ");
-		bank.account = input.next();
-		System.out.print("Phone Number : ");
-		bank.num = input.next();
-		banks.add(bank);
+			if (kind == 1) {
+				bank = new Bank();
+				bank.getUserInput(input);
+				banks.add(bank);
+				break;
+			}
+			else if (kind == 2) {
+				bank = new NHbankAccount();
+				bank.getUserInput(input);
+				banks.add(bank);
+				break;
+			}
+			else if (kind == 3) {
+				bank = new KBbankAccount();
+				bank.getUserInput(input);
+				banks.add(bank);
+				break;
+			}
+			else if (kind == 4) {
+				bank = new ShinHanbankAccount();
+				bank.getUserInput(input);
+				banks.add(bank);
+				break;
+			}
+			else {
+				System.out.print("Select num for Bank Kind between 1-4 : ");
+			}
+		}
 		
 	}
 	
@@ -30,7 +62,7 @@ public class BankManager {
 		String bankAccount = input.next();
 		int index = -1;
 		for (int i = 0; i < banks.size(); i++) {
-			if (banks.get(i).account.equals(bankAccount)) {
+			if (banks.get(i).getAccount().equals(bankAccount)) {
 				index = i;
 				break;
 			}
@@ -52,7 +84,7 @@ public class BankManager {
 		String bankAccount = input.next();		
 		for (int i = 0;  i < banks.size(); i++) {
 			Bank bank = banks.get(i);
-			if (banks.get(i).account.equals(bankAccount)) {
+			if (banks.get(i).getAccount().equals(bankAccount)) {
 					int num = -1;
 					while(num != 5) {
 						System.out.println(" ** Bank Info Edit Menu ** ");
@@ -67,19 +99,23 @@ public class BankManager {
 				
 						if (num == 1) {
 							System.out.print("Name : ");
-							bank.name = input.next();
+							String name = input.next();
+							bank.setName(name);
 						}
 						else if (num == 2) {
 							System.out.print("Birth : ");
-							bank.birth = input.next();
+							String birth = input.next();
+							bank.setBirth(birth);
 						}
 						else if (num == 3) {
 							System.out.print("Account : ");
-							bank.account = input.next();
+							String account = input.next();
+							bank.setAccount(account);
 						}
 						else if (num == 4) {
 							System.out.print("Phone Number : ");
-							bank.num = input.next();
+							String nums = input.next();
+							bank.setNum(nums);
 						}
 						else {
 							continue;
@@ -91,6 +127,7 @@ public class BankManager {
 		}
 	
 	public void viewBanks() {
+		System.out.println("# of registered accounts : " + banks.size());
 		for (int i = 0; i<banks.size(); i++) {
 			banks.get(i).printInfo();
 		}
