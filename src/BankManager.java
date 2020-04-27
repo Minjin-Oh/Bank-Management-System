@@ -3,9 +3,8 @@ import java.util.Scanner;
 
 import Bank.Bank;
 import Bank.BankKind;
-import Bank.KBbankAccount;
-import Bank.NHbankAccount;
 import Bank.ChildbankAccount;
+import Bank.NHbankAccount;
 
 public class BankManager {
 	ArrayList<Bank> banks = new ArrayList<Bank>();
@@ -18,12 +17,11 @@ public class BankManager {
 		
 		int kind = 0;
 		Bank bank;
-		while (kind != 1 && kind != 2 && kind != 3 && kind != 4) {
+		while (kind != 1 && kind != 2 && kind != 3) {
 			System.out.println(" 1. Kakao Bank");
 			System.out.println(" 2. NH Bank");
-			System.out.println(" 3. KB Bank");
-			System.out.println(" 4. ChildBank");
-			System.out.print("Select num for Bank Kind between 1-4 : ");
+			System.out.println(" 3. ChildBank");
+			System.out.print("Select num for Bank Kind between 1-3 : ");
 			kind = input.nextInt();
 		
 			if (kind == 1) {
@@ -39,19 +37,13 @@ public class BankManager {
 				break;
 			}
 			else if (kind == 3) {
-				bank = new KBbankAccount();
-				bank.getUserInput(input);
-				banks.add(bank);
-				break;
-			}
-			else if (kind == 4) {
 				bank = new ChildbankAccount(BankKind.ChildBank);
 				bank.getUserInput(input);
 				banks.add(bank);
 				break;
 			}
 			else {
-				System.out.print("Select num for Bank Kind between 1-4 : ");
+				System.out.print("Select num for Bank Kind between 1-3 : ");
 			}
 		}
 		

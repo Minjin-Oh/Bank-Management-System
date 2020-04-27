@@ -80,9 +80,6 @@ public class Bank {
 		case NHBank:
 			b = "NH";
 			break;
-		case KBBank:
-			b = "KB";
-			break;
 		case ChildBank:
 			b = "Child";
 			break;

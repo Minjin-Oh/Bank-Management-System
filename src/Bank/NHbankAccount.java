@@ -21,7 +21,7 @@ public class NHbankAccount extends Bank {
 		String account = input.next();
 		this.setAccount(account);
 		
-		char answer = 'x';
+		char answer = 'x';		
 		while (answer != 'Y' && answer != 'y' && answer !='N' && answer != 'n') {
 			System.out.println("Do you have a Phone Number? (Y/N)");
 			answer = input.next().charAt(0);
