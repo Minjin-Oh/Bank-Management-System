@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Bank {
 
-	protected AccountKind kind = AccountKind.KakaoBank;
+	protected BankKind kind = BankKind.KakaoBank;
 
 	protected String name;
 	protected String birth;
@@ -15,6 +15,15 @@ public class Bank {
 
 	}
 	
+	public Bank(BankKind kind) {
+		this.kind = kind;
+	}
+	
+	public Bank(String name, String account) {
+		this.name = name;
+		this.account = account;
+	}
+	
 	public Bank(String name, String birth, String account, String num) {
 		this.name = name;
 		this.birth = birth;
@@ -22,11 +31,11 @@ public class Bank {
 		this.num = num;
 	}
 	
-	public AccountKind getKind() {
+	public BankKind getKind() {
 		return kind;
 	}
 
-	public void setKind(AccountKind kind) {
+	public void setKind(BankKind kind) {
 		this.kind = kind;
 	}
 
@@ -63,6 +72,24 @@ public class Bank {
 	}
 	
 	public void printInfo() {
+		String b = "none";
+		switch(this.kind) {
+		case KakaoBank:
+			b = "Kakao";
+			break;
+		case NHBank:
+			b = "NH";
+			break;
+		case KBBank:
+			b = "KB";
+			break;
+		case ChildBank:
+			b = "Child";
+			break;
+		default:
+		}
+		
+		System.out.println("Bank : " + b);
 		System.out.println("name : " + name);
 		System.out.println("birth : " + birth);
 		System.out.println("account : " + account);
@@ -85,6 +112,6 @@ public class Bank {
 		System.out.print("Phone Number : ");
 		String num = input.next();
 		this.setNum(num);
-		
 	}
+	
 }

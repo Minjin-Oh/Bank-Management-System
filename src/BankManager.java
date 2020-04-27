@@ -1,11 +1,11 @@
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import Bank.Bank;
+import Bank.BankKind;
 import Bank.KBbankAccount;
 import Bank.NHbankAccount;
-import Bank.ShinHanbankAccount;
+import Bank.ChildbankAccount;
 
 public class BankManager {
 	ArrayList<Bank> banks = new ArrayList<Bank>();
@@ -22,18 +22,18 @@ public class BankManager {
 			System.out.println(" 1. Kakao Bank");
 			System.out.println(" 2. NH Bank");
 			System.out.println(" 3. KB Bank");
-			System.out.println(" 4. ShinHan Bank");
+			System.out.println(" 4. ChildBank");
 			System.out.print("Select num for Bank Kind between 1-4 : ");
 			kind = input.nextInt();
 		
 			if (kind == 1) {
-				bank = new Bank();
+				bank = new Bank(BankKind.KakaoBank);
 				bank.getUserInput(input);
 				banks.add(bank);
 				break;
 			}
 			else if (kind == 2) {
-				bank = new NHbankAccount();
+				bank = new NHbankAccount(BankKind.NHBank);
 				bank.getUserInput(input);
 				banks.add(bank);
 				break;
@@ -45,7 +45,7 @@ public class BankManager {
 				break;
 			}
 			else if (kind == 4) {
-				bank = new ShinHanbankAccount();
+				bank = new ChildbankAccount(BankKind.ChildBank);
 				bank.getUserInput(input);
 				banks.add(bank);
 				break;
@@ -84,7 +84,7 @@ public class BankManager {
 		String bankAccount = input.next();		
 		for (int i = 0;  i < banks.size(); i++) {
 			Bank bank = banks.get(i);
-			if (banks.get(i).getAccount().equals(bankAccount)) {
+			if (bank.getAccount().equals(bankAccount)) {
 					int num = -1;
 					while(num != 5) {
 						System.out.println(" ** Bank Info Edit Menu ** ");

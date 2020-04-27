@@ -1,10 +1,10 @@
 package Bank;
 
-public enum AccountKind {
+public enum BankKind {
 	
 	KakaoBank,
 	NHBank,
 	KBBank,
-	ShinHanBank
+	ChildBank
 	
 }
