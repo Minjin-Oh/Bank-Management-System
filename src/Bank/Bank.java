@@ -2,7 +2,7 @@ package Bank;
 
 import java.util.Scanner;
 
-public class Bank {
+public abstract class Bank implements BankInput {
 
 	protected BankKind kind = BankKind.KakaoBank;
 
@@ -71,7 +71,33 @@ public class Bank {
 		this.num = num;
 	}
 	
-	public void printInfo() {
+	public abstract void printInfo();
+	
+	public void setBankName(Scanner input) {
+		System.out.print("Name : ");
+		String name = input.next();
+		this.setName(name);
+	}
+	
+	public void setBankBirth(Scanner input) {
+		System.out.print("Birth : ");
+		String birth = input.next();
+		this.setBirth(birth);
+	}
+	
+	public void setBankAccount(Scanner input) {
+		System.out.print("Account : ");
+		String account = input.next();
+		this.setAccount(account);
+	}
+	
+	public void setBankPhone(Scanner input) {
+		System.out.print("Phone number : ");
+		String nums = input.next();
+		this.setNum(nums);
+	}
+	
+	public String getBank() {
 		String b = "none";
 		switch(this.kind) {
 		case KakaoBank:
@@ -85,30 +111,7 @@ public class Bank {
 			break;
 		default:
 		}
-		
-		System.out.println("Bank : " + b);
-		System.out.println("name : " + name);
-		System.out.println("birth : " + birth);
-		System.out.println("account : " + account);
-		System.out.println("Phone Number : " + num);
-	}
-	
-	public void getUserInput(Scanner input) {
-		System.out.print("Name : ");
-		String name = input.next();
-		this.setName(name);
-		
-		System.out.print("Birth : ");
-		String birth = input.next();
-		this.setBirth(birth);
-		
-		System.out.print("Account : ");
-		String account = input.next();
-		this.setAccount(account);
-		
-		System.out.print("Phone Number : ");
-		String num = input.next();
-		this.setNum(num);
+		return b;
 	}
 	
 }

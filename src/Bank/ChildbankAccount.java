@@ -2,7 +2,7 @@ package Bank;
 
 import java.util.Scanner;
 
-public class ChildbankAccount extends Bank {
+public class ChildbankAccount extends ChildMember {
 	
 	protected String parentName;
 	protected String parentBirth;
@@ -46,36 +46,14 @@ public class ChildbankAccount extends Bank {
 	}
 	
 	public void getUserInput(Scanner input) {
-		System.out.print("Name : ");
-		String name = input.next();
-		this.setName(name);
-		
-		System.out.print("Birth : ");
-		String Birth = input.next();
-		this.setBirth(Birth);
-		
-		System.out.print("Account : ");
-		String account = input.next();
-		this.setAccount(account);
-		
-		char answer = 'x';
-		while (answer != 'Y' && answer != 'y' && answer !='N' && answer != 'n') {
-			System.out.println("Do you have a Phone Number? (Y/N)");
-			answer = input.next().charAt(0);
-			if (answer == 'Y' || answer == 'y') {
-				System.out.print("Phone Number : ");
-				String num = input.next();
-				this.setNum(num);
-				break;
-			}
-			else if(answer == 'N' || answer == 'n') {
-				this.setNum(null);
-				break;
-			}
-			else {
-			}
-		}
-		
+		setBankName(input);
+		setBankBirth(input);
+		setBankAccount(input);
+		setBankNumwithYN(input);
+		parentInfo(input);
+	}
+	
+	public void parentInfo(Scanner input) {
 		System.out.println(" -- Parent's Information(Guardian) -- ");
 		System.out.print("Parent's Name : ");
 		String parentName = input.next();
@@ -89,24 +67,10 @@ public class ChildbankAccount extends Bank {
 		System.out.print("Relationship : ");
 		String relation = input.next();
 		this.setRelation(relation);
-		
 	}
 	
 	public void printInfo() {
-		String b = "none";
-		switch(this.kind) {
-		case KakaoBank:
-			b = "Kakao";
-			break;
-		case NHBank:
-			b = "NH";
-			break;
-		case ChildBank:
-			b = "Child";
-			break;
-		default:
-		}
-		
+		String b = getBank();
 		System.out.println("Bank : " + b);
 		System.out.println("name : " + name);
 		System.out.println("birth : " + birth);
@@ -118,4 +82,6 @@ public class ChildbankAccount extends Bank {
 		System.out.println("Parent's Phone Number : " + parentNum);
 		System.out.println("Relationship : " + relation);
 	}
+	
+	
 }
