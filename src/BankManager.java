@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Bank.Bank;
@@ -16,24 +17,32 @@ public class BankManager {
 	}
 	
 	public void addBank() {
-		
 		int kind = 0;
 		BankInput bank = null;
 		while (kind != 1 && kind != 2 && kind != 3) {
-			showAddMenu();
-			kind = input.nextInt();
-			switch(kind) {
-			case 1:
-				setKakao(bank, input);
-				break;
-			case 2:
-				setNH(bank, input);
-				break;
-			case 3:
-				setChild(bank, input);
-				break;
-			default:
-				System.out.print("Select num for Bank Kind between 1-3 : ");
+			try {
+				showAddMenu();
+				kind = input.nextInt();
+				switch(kind) {
+				case 1:
+					setKakao(bank, input);
+					break;
+				case 2:
+					setNH(bank, input);
+					break;
+				case 3:
+					setChild(bank, input);
+					break;
+				default:
+					System.out.print("Select num for Bank Kind between 1-3 : ");
+				}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 and 3");
+				if(input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
 			}
 		}
 	}
@@ -101,31 +110,31 @@ public class BankManager {
 		for (int i = 0;  i < banks.size(); i++) {
 			BankInput bank = banks.get(i);
 			if (bank.getAccount().equals(bankAccount)) {
-					int num = -1;
-					while(num != 5) {
-						showEditMenu();
-						num = input.nextInt();
-						switch(num) {
-						case 1:
-							bank.setBankName(input);
-							break;
-						case 2:
-							bank.setBankBirth(input);
-							break;
-						case 3:
-							bank.setBankAccount(input);
-							break;
-						case 4:
-							bank.setBankPhone(input);
-							break;
-						default:
-							continue;
-						}
-					} // while
-					break;
-				} // if
-			} // for
-		}
+				int num = -1;
+				while(num != 5) {
+					showEditMenu();
+					num = input.nextInt();
+					switch(num) {
+					case 1:
+						bank.setBankName(input);
+						break;
+					case 2:
+						bank.setBankBirth(input);
+						break;
+					case 3:
+						bank.setBankAccount(input);
+						break;
+					case 4:
+						bank.setBankPhone(input);
+						break;
+					default:
+						continue;
+					}
+				} // while
+				break;
+			} // if
+		} // for
+	}
 	
 	public void viewBanks() {
 		System.out.println("# of registered accounts : " + banks.size());

@@ -2,6 +2,8 @@ package Bank;
 
 import java.util.Scanner;
 
+import exceptions.BirthFormatException;
+
 public interface BankInput {
 	
 	public String getAccount();
@@ -10,7 +12,7 @@ public interface BankInput {
 	
 	public void setName(String name);
 	
-	public void setBirth(String birth);
+	public void setBirth(String birth) throws BirthFormatException;
 	
 	public void setNum(String num);
 	

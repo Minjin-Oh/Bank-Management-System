@@ -2,6 +2,8 @@ package Bank;
 
 import java.util.Scanner;
 
+import exceptions.BirthFormatException;
+
 public class ChildbankAccount extends ChildMember {
 	
 	protected String parentName;
@@ -21,7 +23,10 @@ public class ChildbankAccount extends ChildMember {
 		return parentBirth;
 	}
 
-	public void setParentBirth(String parentBirth) {
+	public void setParentBirth(String parentBirth) throws BirthFormatException {
+		if (!birth.contains("년") && !birth.contains("월") && !birth.contains("일")) {
+			throw new BirthFormatException();
+		}
 		this.parentBirth = parentBirth;
 	}
 
@@ -58,9 +63,18 @@ public class ChildbankAccount extends ChildMember {
 		System.out.print("Parent's Name : ");
 		String parentName = input.next();
 		this.setParentName(parentName);
-		System.out.print("Parent's Birth : ");
-		String parentBirth = input.next();
-		this.setParentBirth(parentBirth);
+		
+		String parentBirth = "";
+		while(!parentBirth.contains("년") && !parentBirth.contains("월") && !parentBirth.contains("일")) {
+			System.out.print("Parent's Birth : ");
+			parentBirth = input.next();
+			try {
+				this.setParentBirth(parentBirth);
+			} catch (BirthFormatException e) {
+				System.out.println("Irrcorect Birth Format. put the birth that contains '년', '월', '일'.");
+			}
+		}
+		
 		System.out.print("Parent's Phone Number : ");
 		String parentNum = input.next();
 		this.setParentNum(parentNum);

@@ -2,6 +2,8 @@ package Bank;
 
 import java.util.Scanner;
 
+import exceptions.BirthFormatException;
+
 public abstract class Bank implements BankInput {
 
 	protected BankKind kind = BankKind.KakaoBank;
@@ -51,7 +53,10 @@ public abstract class Bank implements BankInput {
 		return birth;
 	}
 
-	public void setBirth(String birth) {
+	public void setBirth(String birth) throws BirthFormatException {
+		if (!birth.contains("년") && !birth.contains("월") && !birth.contains("일")) {
+			throw new BirthFormatException();
+		}
 		this.birth = birth;
 	}
 
@@ -80,9 +85,16 @@ public abstract class Bank implements BankInput {
 	}
 	
 	public void setBankBirth(Scanner input) {
-		System.out.print("Birth : ");
-		String birth = input.next();
-		this.setBirth(birth);
+		String birth = "";
+		while(!birth.contains("년") && !birth.contains("월") && !birth.contains("일")) {
+			System.out.print("Birth : ");
+			birth = input.next();
+			try {
+				this.setBirth(birth);
+			} catch(BirthFormatException e) {
+				System.out.println("Irrcorect Birth Format. put the birth that contains '년', '월', '일'.");
+			}
+		}
 	}
 	
 	public void setBankAccount(Scanner input) {
