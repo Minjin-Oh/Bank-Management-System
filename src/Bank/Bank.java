@@ -1,10 +1,15 @@
 package Bank;
 
+import java.io.Serializable;
 import java.util.Scanner;
-
 import exceptions.BirthFormatException;
 
-public abstract class Bank implements BankInput {
+public abstract class Bank implements BankInput, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3899050104380402262L;
 
 	protected BankKind kind = BankKind.KakaoBank;
 

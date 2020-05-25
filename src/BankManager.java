@@ -1,18 +1,27 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Bank.Bank;
 import Bank.BankInput;
 import Bank.BankKind;
 import Bank.ChildbankAccount;
 import Bank.KakaoBank;
 import Bank.NHbankAccount;
 
-public class BankManager {
+public class BankManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3617110323393771652L;
+	
 	ArrayList<BankInput> banks = new ArrayList<BankInput>();
-	Scanner input;
+	transient Scanner input;
 	BankManager(Scanner input){
+		this.input = input;
+	}
+	
+	public void setScanner(Scanner input) {
 		this.input = input;
 	}
 	

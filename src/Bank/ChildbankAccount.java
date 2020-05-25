@@ -1,7 +1,6 @@
 package Bank;
 
 import java.util.Scanner;
-
 import exceptions.BirthFormatException;
 
 public class ChildbankAccount extends ChildMember {
@@ -96,6 +95,4 @@ public class ChildbankAccount extends ChildMember {
 		System.out.println("Parent's Phone Number : " + parentNum);
 		System.out.println("Relationship : " + relation);
 	}
-	
-	
 }
