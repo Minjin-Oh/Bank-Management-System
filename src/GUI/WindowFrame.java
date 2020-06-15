@@ -1,24 +1,28 @@
 package GUI;
 
 import javax.swing.JFrame;
+
 import javax.swing.JPanel;
+import manager.BankManager;
 
 public class WindowFrame extends JFrame {
 	
+	BankManager bankmanager;
 	MenuSelection menuselection;
 	BankAdder bankadder;
 	BankViewer bankviewer;
 	
-	public WindowFrame() {
-		this.menuselection = new MenuSelection(this);
-		this.bankadder = new BankAdder(this);
-		this.bankviewer = new BankViewer(this);
-		
+	public WindowFrame(BankManager bankmanager) {
 		this.setSize(500, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Bank Account Setting");
+		
+		this.bankmanager = bankmanager;
+		this.menuselection = new MenuSelection(this);
+		this.bankadder = new BankAdder(this);
+		this.bankviewer = new BankViewer(this, this.bankmanager);
 		
 		this.setupPanel(menuselection);
-		
 		this.setVisible(true);
 	}
 	
@@ -52,5 +56,4 @@ public class WindowFrame extends JFrame {
 	public void setBankviewer(BankViewer bankviewer) {
 		this.bankviewer = bankviewer;
 	}
-
 }

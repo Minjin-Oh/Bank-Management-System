@@ -6,13 +6,19 @@ import exceptions.BirthFormatException;
 
 public interface BankInput {
 	
+	public String getName();
+	
+	public void setName(String name);
+	
+	public String getBirth();
+		
+	public void setBirth(String birth) throws BirthFormatException;
+	
 	public String getAccount();
 	
 	public void setAccount(String account);
 	
-	public void setName(String name);
-	
-	public void setBirth(String birth) throws BirthFormatException;
+	public String getNum();
 	
 	public void setNum(String num);
 	

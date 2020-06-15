@@ -1,4 +1,6 @@
+package manager;
 import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -6,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import GUI.WindowFrame;
 import log.Eventlogger;
 
 public class MenuManager {
@@ -22,6 +26,7 @@ public class MenuManager {
 			bankmanager.setScanner(input);
 		}
 		
+		WindowFrame frame = new WindowFrame(bankmanager);
 		selectMenu(input, bankmanager);
 		putObject(bankmanager, "bankmanager.ser");
 	}

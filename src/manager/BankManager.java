@@ -1,8 +1,11 @@
+package manager;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Bank.Bank;
 import Bank.BankInput;
 import Bank.BankKind;
 import Bank.ChildbankAccount;
@@ -150,6 +153,14 @@ public class BankManager implements Serializable{
 		for (int i = 0; i<banks.size(); i++) {
 			banks.get(i).printInfo();
 		}
+	}
+	
+	public int size() {
+		return banks.size();
+	}
+	
+	public BankInput get(int index) {
+		return (Bank) banks.get(index);
 	}
 	
 	public void showEditMenu() {
